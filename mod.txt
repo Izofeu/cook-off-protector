@@ -1,0 +1,19 @@
+{
+    "name": "Cook Off Protector",
+    "description": "Punishes players if they pick up ingredients for cooking Meth.",
+    "author": "Izofeu",
+	"contact": "https://steamcommunity.com/profiles/76561198101716751/\nDiscord: izofeu",
+    "version": "1.0",
+    "blt_version": 2,
+	"image": "mod_icon.png",
+    "hooks": [
+		{
+            "hook_id": "lib/managers/mission/elementequipment",
+            "script_path": "cookoffprotector.lua"
+        },
+		{
+			"hook_id": "lib/managers/menumanager",
+			"script_path": "menumanager.lua"
+		}
+    ]
+}

@@ -1,0 +1,24 @@
+{
+	"menu_id": "cookoffprotector_menu",
+	"parent_menu_id": "blt_options",
+	"title": "settings_title",
+	"description": "settings_description",
+	"items": [
+		{
+			"type": "toggle",
+			"id": "disallow_pickups",
+			"title": "disallow_pickups",
+			"description": "disallow_pickups_desc",
+			"callback": "disallowpickupstoggle",
+			"value": "disallow_pickups"
+		},
+		{
+			"type": "toggle",
+			"id": "autokick",
+			"title": "autokick_title",
+			"description": "autokick_desc",
+			"callback": "autokicktoggle",
+			"value": "autokick"
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"settings_title": "Cook Off Protector",
+	"settings_description": "Settings for the Cook Off Protector mod.",
+	
+	"disallow_pickups": "Disallow Pickups",
+	"disallow_pickups_desc": "Disallows picking up cooking ingredients by users and automatically transfers them to the host instead.",
+	
+	"autokick_title": "Autokick",
+	"autokick_desc": "Automatically kicks users when they pick up cooking ingredients."
+}
