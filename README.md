@@ -13,3 +13,5 @@ Installation is as simple as extracting it into your mods folder. Make sure you 
 This mod **doesn't affect Lab Rats!** It only works on heists where cooking ingredients are Mission Equipment.
 
 Contributions are welcome!
+
+Download available at [modworkshop.net](https://modworkshop.net/mod/52452)
