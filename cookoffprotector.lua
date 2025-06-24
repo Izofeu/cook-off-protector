@@ -37,7 +37,7 @@ function cookoffprotector.loadconfig()
 	else
 		-- No config file, create one
 		local defaultconfig = {
-			autokick = true,
+			autokick = false,
 			disallow_pickups = true
 		}
 		io.save_as_json(defaultconfig, cookoffprotector.configpath)
