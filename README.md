@@ -2,7 +2,7 @@
 ## An anti-griefing PAYDAY2 mod created to combat trolls on meth cooking heists.
 It features three modes of operation:
 * Disallow players from picking up cooking ingredients and transfer them to the host (Default)
-* * Warn in chat about picking up an ingredient
+* Warn in chat about picking up an ingredient
 * Autokick players on ingredient pickup
 
 When a player joins your lobby, they will be greeted by the following message:
