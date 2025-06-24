@@ -1,3 +1,19 @@
+-- Cook Off Protector - An anti-griefing PAYDAY2 mod created to combat trolls on meth cooking heists.
+-- Copyright (C) 2025 - Izofeu
+
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 -- Setup global namespace
 cookoffprotector = cookoffprotector or {}
 cookoffprotector.modpath = ModPath
@@ -46,6 +62,7 @@ function ElementEquipment:on_executed(instigator)
 	end
 	if self._values.equipment ~= "none" then
 		local name = self._values.equipment
+		local amount = self._values.amount
 		-- Obtain who picked up the item
 		local peer = managers.network:session():peer_by_unit(instigator)
 		-- Check if the pick up player is the host
@@ -55,7 +72,7 @@ function ElementEquipment:on_executed(instigator)
 				managers.chat:send_message(ChatManager.GAME, managers.network:session():local_peer(), peer:name() .. " picked up a cooking ingredient: " .. tostring(name))
 				if cookoffprotector.config.disallow_pickups or cookoffprotector.config.autokick then
 					-- If pickups are disallowed, add the picked up item to host and ignore the pickup
-					managers.player:add_special({name = name, amount = 1, silent = false})
+					managers.player:add_special({transfer = true, name = name, amount = amount, silent = false})
 					if cookoffprotector.config.autokick then
 						-- Kick player if autokick is enabled
 						managers.network:session():send_to_peers("kick_peer", peer:id(), 1)
