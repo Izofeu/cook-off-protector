@@ -50,6 +50,14 @@ cookoffprotector.config = cookoffprotector.loadconfig()
 -- Save the old function to call it later
 local old_on_executed = ElementEquipment.on_executed
 
+function cookoffprotector.getpeer()
+	return managers.network:session():peer_by_unit(instigator)
+end
+
+function cookoffprotector.pass()
+	return
+end
+
 -- Override on mission equipment pickup function
 function ElementEquipment:on_executed(instigator)
 	-- If we are the host, run original logic only
@@ -64,7 +72,13 @@ function ElementEquipment:on_executed(instigator)
 		local name = self._values.equipment
 		local amount = self._values.amount
 		-- Obtain who picked up the item
-		local peer = managers.network:session():peer_by_unit(instigator)
+		local status, value = pcall(cookoffprotector.getpeer)
+		if status then
+			local peer = value
+		else
+			old_on_executed(self, instigator)
+			return
+		end
 		-- Check if the pick up player is the host
 		if peer and not peer:is_host() then
 			if forbidden_equipment[name] then
