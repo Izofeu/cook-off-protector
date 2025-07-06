@@ -50,7 +50,7 @@ cookoffprotector.config = cookoffprotector.loadconfig()
 -- Save the old function to call it later
 local old_on_executed = ElementEquipment.on_executed
 
-function cookoffprotector.getpeer()
+function cookoffprotector.getpeer(instigator)
 	return managers.network:session():peer_by_unit(instigator)
 end
 
@@ -72,7 +72,7 @@ function ElementEquipment:on_executed(instigator)
 		local name = self._values.equipment
 		local amount = self._values.amount
 		-- Obtain who picked up the item
-		local status, value = pcall(cookoffprotector.getpeer)
+		local status, value = pcall(cookoffprotector.getpeer, instigator)
 		if status then
 			local peer = value
 		else
