@@ -38,7 +38,8 @@ function cookoffprotector.loadconfig()
 		-- No config file, create one
 		local defaultconfig = {
 			autokick = false,
-			disallow_pickups = true
+			disallow_pickups = true,
+			debugvar = false,
 		}
 		io.save_as_json(defaultconfig, cookoffprotector.configpath)
 		return defaultconfig
@@ -71,16 +72,17 @@ function ElementEquipment:on_executed(instigator)
 	if self._values.equipment ~= "none" then
 		local name = self._values.equipment
 		local amount = self._values.amount
+		local peer = nil
 		-- Obtain who picked up the item
 		local status, value = pcall(cookoffprotector.getpeer, instigator)
 		if status then
-			local peer = value
+			peer = value
 		else
 			old_on_executed(self, instigator)
 			return
 		end
 		-- Check if the pick up player is the host
-		if peer and not peer:is_host() then
+		if not peer:is_host() or cookoffprotector.config.debugvar then
 			if forbidden_equipment[name] then
 				-- Send a message about picking up a cooking ingredient
 				managers.chat:send_message(ChatManager.GAME, managers.network:session():local_peer(), peer:name() .. " picked up a cooking ingredient: " .. tostring(name))
