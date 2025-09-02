@@ -88,7 +88,7 @@ function ElementEquipment:on_executed(instigator)
 				managers.chat:send_message(ChatManager.GAME, managers.network:session():local_peer(), peer:name() .. " picked up a cooking ingredient: " .. tostring(name))
 				if cookoffprotector.config.disallow_pickups or cookoffprotector.config.autokick then
 					-- If pickups are disallowed, add the picked up item to host and ignore the pickup
-					managers.player:add_special({transfer = true, name = name, amount = amount, silent = false})
+					managers.player:add_special({dropped_out = true, transfer = true, name = name, amount = amount, silent = false})
 					if cookoffprotector.config.autokick then
 						-- Kick player if autokick is enabled
 						managers.network:session():send_to_peers("kick_peer", peer:id(), 1)
